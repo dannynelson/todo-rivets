@@ -1,0 +1,14 @@
+<div id="todos">
+  <h1>Todos</h1>
+  <input rv-value="inputText" placeholder="New todo">
+  <button rv-on-click="addTodo">add</button>
+  <ul>
+    <div rv-each-todo="todos">
+      <div rv-on-click="completeTodo" class="item">
+        <input type="checkbox" rv-checked="todo.completed">
+        <span rv-class-completed="todo.completed">{ todo.text }</span>
+      </div>
+      <button rv-on-click="deleteTodo">delete</button>
+    </div>
+  </ul>
+</div>

@@ -4,13 +4,15 @@ module.exports = (grunt) ->
   grunt.initConfig
     clean:
       compiled: ['public']
-    
-    coffeeify:
-      options:
-        debug: true
-      compile:
+
+    browserify:
+      dist:
         files:
-          'public/bundle.js': ['client/index.coffee', 'client/index.js']
+          'public/bundle.js': ['client/index.coffee']
+        options:
+          transform: ['coffeeify']
+          browserifyOptions: extensions: ['.coffee']
+          bundleOptions: debug: true
 
     connect:
       server:
@@ -66,7 +68,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'build', [
     'clean'
-    'coffeeify'
+    'browserify'
     'htmlbuild'
     'stylus'
     'copy'
